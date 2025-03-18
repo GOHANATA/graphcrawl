@@ -5,8 +5,10 @@
 #include <unordered_set>
 #include <bits/stdc++.h>
 #include "rapidjson/document.h"
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 size_t my_write_data(char *ptr, size_t size, size_t nmemb, void *userdata)
 {
@@ -55,6 +57,7 @@ int main(int argc, char* argv[]) {
 
     toVisit.push({startNode, 0});
     visited.insert(startNode);
+    auto start = high_resolution_clock::now();
     while (!toVisit.empty())
     {
         int currDepth = toVisit.front().second;
@@ -77,12 +80,9 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-
-    std::cout << "\nBFS Traversal Order: \n";
-    for (const auto& node : bfsOrder)
-    {
-        std::cout << node << "\n" << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-    }
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop - start);
+    std::cout << "Time taken by function: " << duration.count() << " milliseconds" << std::endl;
     curl_global_cleanup();
     return 0;
 }
