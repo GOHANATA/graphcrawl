@@ -1,0 +1,3 @@
+g++ -c -o graphcrawler.o graphcrawler.cpp -I ~/prgs/rapidjson/include
+g++ -o graphcrawler graphcrawler.o -lcurl
+Time taken by function: 142102 milliseconds
